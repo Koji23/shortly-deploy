@@ -113,7 +113,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', function(n) {
-    grunt.task.run(['eslint', 'mochaTest', 'concat', 'uglify', '']);
+    grunt.task.run(['eslint', 'mochaTest', 'concat', 'uglify']);
     if (grunt.option('prod')) {
       grunt.task.run(['shell']);
     }
