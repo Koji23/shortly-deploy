@@ -9,6 +9,8 @@ Shortly.createLinkView = Backbone.View.extend({
 
   render: function() {
     this.$el.html( this.template() );
+    alert('get some');
+    // adk 
     return this;
   },
 

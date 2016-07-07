@@ -48,9 +48,7 @@ module.exports = function(grunt) {
     },
 
     eslint: {
-      target: [
-        // Add list of files to lint here
-      ]
+      target: [ 'public/client/createLinkView.js' ]
     },
 
     cssmin: {
@@ -76,8 +74,10 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+        command: 'git push live master'
       }
     },
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -113,7 +113,13 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', function(n) {
-    console.log(n);
+    grunt.task.run(['eslint', 'mochaTest', 'concat', 'uglify']);
+    if (grunt.option('prod')) {
+      grunt.task.run(['shell']);
+    }
+  });
+
+  grunt.event.on('watch', function() {
     grunt.task.run(['concat', 'uglify']);
   });
 
